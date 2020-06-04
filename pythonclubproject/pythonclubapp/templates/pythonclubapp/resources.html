@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Pythonclub Resources</h2>
+<table class="table">
+    <tr>
+        <th>Resource Name</th>
+        <th>Resource Description</th>
+        <th>Resource Type</th>
+        <th>Resource URL</th>
+    </tr>
+    {% for t in resources_list %}
+        <tr>
+            <td>{{t.resourceName}}</td>
+            <td>{{t.resourceDescription}}</td>
+            <td>{{t.resourceType}}</td>
+            <td><a href="{{t.resourceUrl}}">{{t.resourceUrl}}</a></td>
+            
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
