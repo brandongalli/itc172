@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Meeting, MeetingMinutes, Resource, Event
+from .forms import ProductForm, ResourceForm
 
 # Create your views here.
 def index(request):
@@ -19,3 +20,30 @@ def meetingsDetail(request, id):
     meetingcount = Meeting.objects.filter(pk=id).count()
     context = {'meeting': meeting, 'count': meetingcount}
     return render(request, 'pythonclubapp/meetingsdetail.html', context=context)
+
+def newProduct(request):
+    form = ProductForm
+    if request.method=='POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=True)
+            post.save()
+            form=ProductForm()
+    else:
+        form=ProductForm()
+
+    return render(request, 'pythonclubapp/newclub.html', context={'form': form})
+
+
+def newResource(request):
+    form = ResourceForm
+    if request.method=='POST':
+        form = ResourceForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=True)
+            post.save()
+            form=ResourceForm()
+    else:
+        form=ResourceForm()
+
+    return render(request, 'pythonclubapp/newresource.html', context={'form': form})

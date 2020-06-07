@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h2>Add Club</h2>
+
+<form class="post-form" method="POST">
+
+<table class="table">
+        {% csrf_token %}
+        {{form.as_table}}
+</table>
+    <button class="save btn btn-default" type='submit'>Save</button>
+</form>
+
+{% endblock %}
